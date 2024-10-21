@@ -7,7 +7,7 @@ module ID_EX #(parameter N=32)(input clk,input pc,input [2:0]EX_in,input [2:0]ME
 /*The Control outputs are divided into three categories EX,MEM,WB to pass on the values 
 to the respective stages from this pipeline register as these values change on 
 every clock cycle*/
-/*(In order)
+/*(In order 2,1,0)
 EX- Aluop,Alusrc
 MEM- memread,memwrite,branch
 WB- memtoreg,regwrite
