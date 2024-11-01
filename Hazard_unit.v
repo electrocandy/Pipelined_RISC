@@ -1,9 +1,9 @@
-module Hazard_unit #(parameter N=32)(input clk,input [2:0]IDEX_MEM,input [4:0]EXMEMregrd,input [N-1:0]instruction,input pc_in,
-                                     output pc,output [N-1:0]instruction_out, output IFIDwrite);
+module Hazard_unit #(parameter N=32)(input clk,input [2:0]IDEX_MEM,input [4:0]EXMEMregrd,input [N-1:0]instruction,input [N-1:0]pc_in,
+                                     output [N-1:0]pc,output [N-1:0]instruction_out, output IFIDwrite);
 
 reg [4:0]r1;
 reg [4:0]r2;
-reg pcbuf;
+reg [N-1:0]pcbuf;
 reg [N-1:0]instructionbuf;
 reg ifidwritebuf;
 
