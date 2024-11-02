@@ -9,8 +9,15 @@ program_counter ins1(branch,zero,imm,clk,pcout);
 instruction_memory ins2(pcout,clk,instruction);
 IF_ID ins3(clk,pcout,flush,instruction,IFIDwrite,instruction_Hazard,pc_hazard,instruction_out,pc_out);
 Hazard_unit ins4(clk,MEM_out,EXMEMregrd);
-register ins3();
-
-
+register ins5();
+immediategenerate ins6();
+control ins7();
+ID_EX ins8();
+AluControl ins9();
+ALU ins10();
+Data_Forwarding ins11();
+EX_MEM ins12();
+data_memory ins13();
+MEM_WB ins14();
 
 endmodule
