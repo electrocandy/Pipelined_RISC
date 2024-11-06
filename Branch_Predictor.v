@@ -1,4 +1,16 @@
-module Branch_Predictor #(parameter N=32,parameter M=16) (input [N-1:0]pc_in, input branch_act,output [1:0]branch_pred);
+module Branch_Predictor #(parameter N=32)(input [N-1:0]data1,[N-1:0]data2,input branch,output equal);
+
+initial begin
+    equal=1'b0;
+end
+
+if(data1==data2 && branch)begin
+    equal=1'b1;
+end
+
+endmodule
+
+/*module Branch_Predictor #(parameter N=32,parameter M=16) (input [N-1:0]pc_in, input branch_act,output [1:0]branch_pred);
 
 reg [1:0]BHT [0:M-1];
 reg [1:0]bd;
@@ -24,3 +36,4 @@ end
 assign branch_pred=bd;
 
 endmodule
+*/
