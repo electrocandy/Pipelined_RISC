@@ -1,12 +1,17 @@
 module Branch_Predictor #(parameter N=32)(input [N-1:0]data1,[N-1:0]data2,input branch,output equal);
 
+reg eqbuf;
+
 initial begin
-    equal=1'b0;
+    eqbuf<=1'b0;
+end
+always@(*)begin
+if(data1==data2 && branch)begin
+    eqbuf<=1'b1;
+end
 end
 
-if(data1==data2 && branch)begin
-    equal=1'b1;
-end
+assign equal=eqbuf;
 
 endmodule
 

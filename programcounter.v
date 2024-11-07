@@ -10,7 +10,7 @@ end
 
 always@(posedge clk)begin
    if(IFIDwrite)begin
-      pcoutbuff<=pc_hazard
+      pcoutbuff<=pc_hazard;
    end else begin
       pcoutbuff<=pc_in;
    end

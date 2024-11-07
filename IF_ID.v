@@ -1,4 +1,4 @@
-module IF_ID #(parameter N=32)(input clk,input pc_in,input flush,input [N-1:0]instruction_in,input IFIDwrite,/*input [N-1:0]instruction_Hazard,*/
+module IF_ID #(parameter N=32)(input clk,input [N-1:0]pc_in,input flush,input [N-1:0]instruction_in,input IFIDwrite/*input [N-1:0]instruction_Hazard,*/
                /*input [N-1:0]pc_hazard*/,output [N-1:0]instruction_out,output [N-1:0]pc_out);
 reg [N-1:0]instructionbuf;
 reg [N-1:0]pcbuf;             
