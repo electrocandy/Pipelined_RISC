@@ -24,6 +24,7 @@ reg [N-1:0]immbuf;
 reg [4:0]loadbuf;
 reg [N-1:0]dt1;
 reg [N-1:0]dt2;
+reg [N-1:0]insbuf;
 always@(posedge clk) begin
 exbuf<=EX_in;
 membuf<=MEM_in;
@@ -32,6 +33,7 @@ reg1buf<=register1;
 reg2buf<=register2;
 immbuf<=immgenout;
 loadbuf<=loadreg;
+insbuf<=instruction;
 dt1<=regdata1;
 dt2<=regdata2;
 end
@@ -43,6 +45,7 @@ assign outreg1=reg1buf;
 assign outreg2=reg2buf;
 assign imm=immbuf;
 assign Loadregout=loadbuf;
+assign instruc_out=insbuf;
 assign data1=dt1;
 assign data2=dt2;
 

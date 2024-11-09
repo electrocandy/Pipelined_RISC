@@ -2,7 +2,7 @@ module Multipath #(parameter N=32)(input clk);
 
 wire IFIDwrite, flush, Select, equal;
 wire [N-1:0] instruction, pcout, imm, instruction_out, pc_out, pc, 
-             data_frommux, data1, data2, imm_out, Alu_data, dt1, dt2, Alu, 
+             data_frommux, data1, data2, imm_out, Alu_data, dt1, dt2, 
              muxAout, muxBout, Writedata, mem_in, mem_out, data_out, Aluresout, 
              muxDin1, muxDin2, muxDout,instruc_out;
              
@@ -14,6 +14,7 @@ wire [7:0] muxCout;
 wire [7:0] con,zero;
 
 assign zero=8'b0;
+assign flush=1'b0;
 
 mux21 insD(muxDin1,muxDin2,equal,muxDout);
 program_counter ins1(clk,muxDout,IFIDwrite,pc,pcout);
@@ -31,8 +32,8 @@ mux21 #(.N(8)) insC(con,zero,Select,muxCout);
 ID_EX ins8(clk,muxCout[7:5],muxCout[4:2],muxCout[1:0],instruction_out[19:15],instruction_out[24:20],instruction_out[11:7],imm,instruction_out,
            data1,data2,outreg1,outreg2,Loadregout,EX_out,MEM_out,WB_out,imm_out,instruc_out,dt1,dt2);
 ALUControl ins9(EX_out[2:1],instruc_out[14:12],instruc_out[30],Alucon);
-mux31 insA(dt1,data_frommux,Alu/*From EX_MEM pipe*/,ForwardA,muxAout);
-mux31 insB(dt2,data_frommux,Alu/*From EX_MEM pipe*/,ForwardB,muxBout);
+mux31 insA(dt1,data_frommux,mem_in/*From EX_MEM pipe*/,ForwardA,muxAout);
+mux31 insB(dt2,data_frommux,mem_in/*From EX_MEM pipe*/,ForwardB,muxBout);
 ALU ins10(muxAout,muxBout,Alucon,Alu_data);
 Data_Forwarding ins11(Loadregout_out,Loadregout_out_out,WB_out_EXMEM,WB_out_MEMWB,outreg1,outreg2,ForwardA,ForwardB);
 EX_MEM ins12(clk,MEM_in,WB_in,Alu_data,Loadregout,muxBout,MEM_out_EXMEM,WB_out_EXMEM,Writedata,mem_in,Loadregout_out);
