@@ -70,3 +70,4 @@ IF_ID.v.bak
 programcounter.v.bak
 Branch_Predictor.v.bak
 Multipath.v.bak
+instruction_memory.v.bak
